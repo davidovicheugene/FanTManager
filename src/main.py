@@ -5,7 +5,6 @@ from time import sleep
 import config
 from auth import auth_r
 from site_actions import *
-from book_data import *
 from config import *
 
 if __name__ == "__main__":
