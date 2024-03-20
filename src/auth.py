@@ -1,10 +1,20 @@
 import os.path
 
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import pickle
 
 from config import prelogin_rulate_url
 from users_data import rulate_data
+
+
+def set_rand_useragent():
+    from fake_useragent import UserAgent
+    fk_ua = UserAgent()
+    fk_useragent = fk_ua.random
+    options = Options()
+    options.add_argument(f'user-agent={fk_useragent}')
+    return options
 
 
 def save_session(driver, username):
