@@ -1,4 +1,5 @@
-from selenium.webdriver.common.keys import Keys
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -160,5 +161,20 @@ def create_novel(driver,
     WebDriverWait(driver, EC_wait_secs).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "#general > div:nth-child(14) > div > a"))
     ).click()
-
+    #  Original Publication Status
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, NovelSettingsSelectors.OriginalPubStatus.SELECT_))
+    ).click()
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, novel.original_pub_status))
+    ).click()
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, NovelSettingsSelectors.OriginalPubStatus.SELECT_))
+    ).click()
+    time.sleep(2)
+    # Description field filling
+    # TODO: To create functionality for prettifying text
+    WebDriverWait(driver, EC_wait_secs).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#cke_21"))).click()
+    WebDriverWait(driver, EC_wait_secs).until(EC.presence_of_element_located((By.CSS_SELECTOR, "body"))).send_keys(novel.description)
+    #
     return driver

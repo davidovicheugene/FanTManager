@@ -6,13 +6,13 @@ EC_wait_secs = 2
 prelogin_rulate_url = "https://tl.rulate.ru/site/about"
 
 rulate_profiles_ids = {"Honyaku_Hajime": 407401,
+                       "Honyaku_Zenpo": 407485,
                        }
 
 # TEST CONFIG
 
 # Testing auth config
-t_auth_username = "Honyaku_Hajime"
-
+t_auth_username = "Honyaku_Zenpo"
 
 # Novel creation test config
 n = Novel()
@@ -32,7 +32,7 @@ n.alternative_title_2 = "Простите за то, что я не успела
 n.alternative_title_3 = ""
 n.b_download_access = False
 # Description
-n.original_pub_status = NovelSettingsSelectors.OriginalPubStatus.ONGOING
+n.original_pub_status = NovelSettingsSelectors.OriginalPubStatus.ABANDONED
 n.description = """Я учусь в старшей школе на втором курсе и состою в клубе "Исследования человеческой культуры".
 В клуб вступила красивая студентка-переводчица Мия Курусу.
 У Курусу была идеальная внешность и характер.

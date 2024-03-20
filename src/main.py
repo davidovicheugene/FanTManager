@@ -1,20 +1,17 @@
+import time
+
 from selenium import webdriver
 
-from time import sleep
-
 import config
-from auth import auth_r
+from auth import *
 from site_actions import *
-from config import *
 
 if __name__ == "__main__":
     driver = webdriver.Chrome()
-    driver = auth_r(driver, t_auth_username)
-    # driver = get_profile_page_r(driver, "Honyaku_Hajime")
-
-    # Novel instance creation
+    driver = auth_r(driver, config.t_auth_username)
     novel = config.n
-    driver = create_novel(driver,
-                          novel)
-    sleep(100)
+    # driver = create_novel(driver, novel)
+    driver, data = get_profile_info_r(driver, 21)
+    print(data)
+    print("Quiting driver")
     driver.quit()

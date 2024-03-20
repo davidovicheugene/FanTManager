@@ -3,3 +3,5 @@ venv
 .code
 misc
 __pycache__
+
+src/users_data.py
