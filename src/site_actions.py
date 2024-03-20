@@ -82,10 +82,11 @@ def get_profile_info_r(driver, user_id):
     return driver, data
 
 
-def create_novel(driver,
-                 novel
-                 ):
-    driver.get("https://tl.rulate.ru/book/0/edit?typ=A")
+def create_novel(driver, novel):
+    try:
+        driver.get("https://tl.rulate.ru/book/0/edit?typ=A")
+    except:
+        exit()
     # Click on needed section
     WebDriverWait(driver, EC_wait_secs).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, novel.catalog_section))
@@ -161,6 +162,7 @@ def create_novel(driver,
     WebDriverWait(driver, EC_wait_secs).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "#general > div:nth-child(14) > div > a"))
     ).click()
+
     #  Original Publication Status
     WebDriverWait(driver, EC_wait_secs).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, NovelSettingsSelectors.OriginalPubStatus.SELECT_))
@@ -171,10 +173,75 @@ def create_novel(driver,
     WebDriverWait(driver, EC_wait_secs).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, NovelSettingsSelectors.OriginalPubStatus.SELECT_))
     ).click()
-    time.sleep(2)
     # Description field filling
     # TODO: To create functionality for prettifying text
-    WebDriverWait(driver, EC_wait_secs).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#cke_21"))).click()
-    WebDriverWait(driver, EC_wait_secs).until(EC.presence_of_element_located((By.CSS_SELECTOR, "body"))).send_keys(novel.description)
-    #
+    # Genres
+    # Tags
+    # Fandoms
+    # Adult restriction
+    if novel.b_is_adult:
+        WebDriverWait(driver, EC_wait_secs).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_adult"))).click()
+    # Novel theme
+    WebDriverWait(driver, EC_wait_secs).until(EC.element_to_be_clickable((By.CSS_SELECTOR, novel.theme))).click()
+    # Notes
+    if novel.notes is not "":
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "#Book_notes"))).send_keys(novel.notes)
+    # Main image
+    # Image Url
+    # Additional images
+    # Next btn click
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "#description > div:nth-child(15) > div > a"))
+    ).click()
+
+    # Chapter price
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#Book_subscription_price"))).send_keys(novel.chapter_price)
+    # Audio chapter price
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#Book_audio_subscription_price"))
+    ).send_keys(novel.chapter_audio_price)
+    # 10 Chapters discount
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#Book_discount"))
+    ).send_keys(novel.discount)
+    # Subscription 1
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "#subscription > div:nth-child(6) > div > div:nth-child(1) > input"))
+    ).send_keys(novel.subscription_1[0])
+    # RC 1
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "#subscription > div:nth-child(6) > div > div:nth-child(2) > input"))
+    ).send_keys(novel.subscription_1[1])
+    # Subscription 2
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "#subscription > div:nth-child(7) > div > div:nth-child(1) > input"))
+    ).send_keys(novel.subscription_2[0])
+    # RC 2
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "#subscription > div:nth-child(7) > div > div:nth-child(2) > input"))
+    ).send_keys(novel.subscription_2[1])
+    # Subscription 3
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "#subscription > div:nth-child(8) > div > div:nth-child(1) > input"))
+    ).send_keys(novel.subscription_3[0])
+    # RC 3
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "#subscription > div:nth-child(8) > div > div:nth-child(2) > input"))
+    ).send_keys(novel.subscription_3[1])
+    if novel.b_disable_subs_at_sale:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_sale_wo_tickets"))
+        ).click()
+    # Next btn click
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "#subscription > div:nth-child(10) > div > a"))).click()
+
     return driver

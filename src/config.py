@@ -56,7 +56,7 @@ n.discount = 10  # percents
 n.subscription_1 = [10, (n.chapter_price * 10) - n.chapter_price]
 n.subscription_2 = [20, (n.chapter_price * 20) - (n.chapter_price * 3)]
 n.subscription_3 = [50, (n.chapter_price * 50) - (n.chapter_price * 5)]
-n.disable_subs_at_sale = True
+n.b_disable_subs_at_sale = True
 # Team and chapter publication
 # team // NONE by default //
 # сделать позже считывание доступных команд и их выгрузку в файл, оттуда же и чтение для выбора

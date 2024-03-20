@@ -18,15 +18,15 @@ def set_rand_useragent():
 
 
 def save_session(driver, username):
-    # Get all cookies from the current Honyaku_Zenpo
+    # Get all cookies from the current session
     cookies = driver.get_cookies()
     # Dump cookies
-    pickle.dump(cookies, open(f'misc/{username}', "wb"))
+    pickle.dump(cookies, open(f'sessions/{username}', "wb"))
 
 
 def set_cookies(driver, username):
     # Send cookies to driver at for loop
-    for cookie in pickle.load(open(f'misc/{username}', 'rb')):
+    for cookie in pickle.load(open(f'sessions/{username}', 'rb')):
         driver.add_cookie(cookie)
     return driver
 
@@ -44,7 +44,7 @@ def auth_r(driver, username):
     # Pre-login page loading
     driver.get(prelogin_rulate_url)
     # Check if needed session exists else authorize
-    if os.path.exists(f'misc/{username}'):
+    if os.path.exists(f'sessions/{username}'):
         set_cookies(driver, username)
     else:
         # Find profile btn

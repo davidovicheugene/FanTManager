@@ -114,7 +114,7 @@ class Novel:
     subscription_1 = [10, (chapter_price * 10) - chapter_price]
     subscription_2 = [20, (chapter_price * 20) - (chapter_price * 3)]
     subscription_3 = [50, (chapter_price * 50) - (chapter_price * 5)]
-    disable_subs_at_sale = False
+    b_disable_subs_at_sale = False
 
     # Team and chapter publication
     # team // NONE by default //
