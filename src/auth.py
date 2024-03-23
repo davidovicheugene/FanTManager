@@ -1,5 +1,6 @@
-import os.path
+import os
 
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import pickle
@@ -29,6 +30,30 @@ def set_cookies(driver, username):
     for cookie in pickle.load(open(f'sessions/{username}', 'rb')):
         driver.add_cookie(cookie)
     return driver
+
+
+def del_cookies():
+    import shutil
+    folder = 'sessions/'
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+
+def refresh_sessions():
+    del_cookies()
+    for user in rulate_data:
+        driver = webdriver.Chrome()
+        driver.get(prelogin_rulate_url)
+        auth_r(driver, user)
+        driver.get(prelogin_rulate_url)
+        driver.quit()
 
 
 def auth_r(driver, username):

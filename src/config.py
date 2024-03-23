@@ -72,7 +72,7 @@ n.b_auto_add_chapters = False
 n.chapter_pub_delay = [1, 5, 12]
 n.b_notify_new_comments = True
 n.b_show_raising_progress = False
-n.b_take_text_mistakes = True
+n.b_take_text_mistakes_msgs = True
 # Auto voiceover
 n.b_auto_voiceover = True
 n.auto_voiceover_gender = NovelSettingsSelectors.VoiceoverGender.FEMALE

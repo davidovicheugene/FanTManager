@@ -78,7 +78,7 @@ class NovelSettingsSelectors:
 
 
 class Novel:
-    catalog_section = CatalogSection.SKIP  # skips catalog section choice
+    catalog_section = CatalogSection.Novels.FanficsTranslations.NARUTO  # skips catalog section choice
     # Basic information
     original_lang = NovelSettingsSelectors.OriginalLang.DEFAULT
     original_title = ""
@@ -118,7 +118,7 @@ class Novel:
 
     # Team and chapter publication
     # team // NONE by default //
-    # сделать позже считывание доступных команд и их выгрузку в файл, оттуда же и чтение для выбора
+    # TODO: сделать считывание доступных команд и их выгрузку в файл, оттуда же и чтение для выбора
     vk_group_link = ""
     telegram_chanel_link = ""
     translation_status = NovelSettingsSelectors.TranslationStatus.IN_PROGRESS
@@ -131,7 +131,7 @@ class Novel:
     chapter_pub_delay = []
     b_notify_new_comments = True
     b_show_raising_progress = False
-    b_take_text_mistakes = True
+    b_take_text_mistakes_msgs = True
 
     # Auto voiceover
     b_auto_voiceover = True
