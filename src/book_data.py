@@ -120,7 +120,7 @@ class Novel:
     # team // NONE by default //
     # TODO: сделать считывание доступных команд и их выгрузку в файл, оттуда же и чтение для выбора
     vk_group_link = ""
-    telegram_chanel_link = ""
+    tg_chanel_link = ""
     translation_status = NovelSettingsSelectors.TranslationStatus.IN_PROGRESS
     comment = ""
     b_is_copyright = False
@@ -129,6 +129,7 @@ class Novel:
     b_auto_sub_take_off = False
     b_auto_add_chapters = False
     chapter_pub_delay = []
+    b_delayed_chapters_pub = False
     b_notify_new_comments = True
     b_show_raising_progress = False
     b_take_text_mistakes_msgs = True

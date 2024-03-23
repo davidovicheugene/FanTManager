@@ -241,4 +241,100 @@ def create_novel(driver, novel):
     WebDriverWait(driver, EC_wait_secs).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "#subscription > div:nth-child(10) > div > a"))).click()
 
+    # team
+    # VK group link
+    WebDriverWait(driver, EC_wait_secs).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#Book_vk_link"))
+                                              ).send_keys(novel.vk_group_link)
+    # Telegram channel link
+    WebDriverWait(driver, EC_wait_secs).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#Book_tg_url"))
+                                              ).send_keys(novel.tg_chanel_link)
+    # Translation status
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, NovelSettingsSelectors.TranslationStatus.SELECT_))
+    ).click()
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, novel.translation_status))
+    ).click()
+    # WebDriverWait(driver, EC_wait_secs).until(
+    #     EC.element_to_be_clickable((By.CSS_SELECTOR, NovelSettingsSelectors.TranslationStatus.SELECT_))
+    # ).click()
+    # Comment
+    WebDriverWait(driver, EC_wait_secs).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#Book_wealth_reason"))
+                                              ).send_keys(novel.comment)
+    # Is copyright checkbox
+    if novel.b_is_copyright:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_copyright"))
+        ).click()
+    # Display chapters publication frequency checkbox
+    if not novel.b_display_frequency:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_frequency"))
+        ).click()
+    # Chapters subscriptions auto take off parameters
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#team > div:nth-child(8) > div > div:nth-child(1) > input"))
+                                              ).send_keys(novel.subs_take_off[0])
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#team > div:nth-child(8) > div > div:nth-child(2) > input"))
+                                              ).send_keys(novel.subs_take_off[1])
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#team > div:nth-child(8) > div > div:nth-child(3) > input"))
+                                              ).send_keys(novel.subs_take_off[2])
+    # Chapters subs auto take off
+    if novel.b_auto_sub_take_off:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_unsub_auto"))
+        ).click()
+    # Auto chapters opening
+    if novel.b_auto_add_chapters:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_open_chap_sub"))
+        ).click()
+    # Delayed chapters publication parameters
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#team > div:nth-child(11) > div > div:nth-child(1) > input"))
+    ).send_keys(novel.subs_take_off[0])
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#team > div:nth-child(11) > div > div:nth-child(2) > input"))
+    ).send_keys(novel.subs_take_off[1])
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "#team > div:nth-child(11) > div > div:nth-child(3) > input"))
+    ).send_keys(novel.subs_take_off[2])
+    # Delayed chapters publication
+    if novel.b_delayed_chapters_pub:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_open_auto"))
+        ).click()
+    # New comments notifications
+    if not novel.b_notify_new_comments:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_notify_comments"))
+        ).click()
+    # Show money raising progress
+    if novel.b_show_raising_progress:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_show_fundraising_progress"))
+        ).click()
+    # Auto voiceover
+    if not novel.b_auto_voiceover:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_audible_enable"))
+        ).click()
+    # Auto voiceover gender selection
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, NovelSettingsSelectors.VoiceoverGender.SELECT_))
+    ).click()
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, novel.auto_voiceover_gender))
+    ).click()
+    # Get msgs with text mistakes from other users
+    if not novel.b_take_text_mistakes_msgs:
+        WebDriverWait(driver, EC_wait_secs).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "#Book_orfo_enable"))
+        ).click()
+    # Next page btn
+    WebDriverWait(driver, EC_wait_secs).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "#team > div:nth-child(18) > div > a"))
+    ).click()
     return driver

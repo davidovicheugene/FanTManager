@@ -61,18 +61,18 @@ n.b_disable_subs_at_sale = True
 # team // NONE by default //
 # сделать позже считывание доступных команд и их выгрузку в файл, оттуда же и чтение для выбора
 n.vk_group_link = "https://vk.com/labelcom"
-n.telegram_chanel_link = "https://t.me/asafevstas"
+n.tg_chanel_link = "https://t.me/asafevstas"
 n.translation_status = NovelSettingsSelectors.TranslationStatus.IN_PROGRESS
 n.comment = ""
 n.b_is_copyright = False
-n.b_display_frequency = False
-n.subs_take_off = [1, 2, 20]
+n.b_display_frequency = True
+n.subs_take_off = [1, 3, 20]
 n.b_auto_sub_take_off = False
 n.b_auto_add_chapters = False
-n.chapter_pub_delay = [1, 5, 12]
+n.chapter_pub_delay = [2, 2, 12]
+n.b_delayed_chapters_pub = True
 n.b_notify_new_comments = True
 n.b_show_raising_progress = False
 n.b_take_text_mistakes_msgs = True
-# Auto voiceover
 n.b_auto_voiceover = True
-n.auto_voiceover_gender = NovelSettingsSelectors.VoiceoverGender.FEMALE
+n.auto_voiceover_gender = NovelSettingsSelectors.VoiceoverGender.MALE
