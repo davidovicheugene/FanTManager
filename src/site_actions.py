@@ -83,17 +83,8 @@ def get_profile_info_r(driver, user_id):
 
 
 def create_novel(driver, novel):
-    try:
-        driver.get("https://tl.rulate.ru/book/0/edit?typ=A")
-    except:
-        driver.get("https://tl.rulate.ru/book/0/edit")
-        WebDriverWait(driver, EC_wait_secs).until(
-            EC.element_to_be_clickable(
-                (By.CSS_SELECTOR,
-                 "#body > div:nth-child(4) > div:nth-child(3) > div > div > div:nth-child(1) > big > a"))
-        ).click()
+    driver.get("https://tl.rulate.ru/book/0/edit?typ=A")
     # Click on needed section
-    time.sleep(10)
     WebDriverWait(driver, EC_wait_secs).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, novel.catalog_section))
     ).click()
